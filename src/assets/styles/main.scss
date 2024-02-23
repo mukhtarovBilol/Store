@@ -1,0 +1,20 @@
+@import 'fonts.scss';
+@import 'common.scss';
+
+// layout
+@import '@/layout/header/header.scss';
+// layout
+
+// components
+@import '@/components/card/card.scss';
+@import '@/components/nav/nav.scss';
+@import '@/components/modal/modal.scss';
+// components
+
+// views
+@import '@/views/aboutProducts/aboutProducts.scss';
+@import '@/views/category/category.scss';
+@import '@/views/categoryAbout/categoryAboutView.scss';
+@import '@/views/basket/basketView.scss';
+@import '@/views/likeView/likeView.scss';
+// views

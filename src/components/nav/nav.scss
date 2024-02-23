@@ -1,0 +1,160 @@
+.nav {
+    background: #286783;
+    padding: 10px 0;
+
+    & .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    &__logo {
+        color: #fff;
+        font-size: 35px;
+        font-weight: 700;
+    }
+
+    &__image {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 2px;
+    }
+    
+    &__item {
+        background: #fff;
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        position: relative;
+    }
+
+    &__count-basket {
+        display: none;
+    }
+
+    &__count-basket.active {
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: grid;
+        place-items: center;
+        place-content: center;
+        font-size: clamp(14px, 3vw, 17px);
+    }
+    
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    &__txt {
+        font-weight: 700;
+    }
+
+    &__search {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    &__input {
+        max-width: 500px;
+        width: 100%;
+        padding: 20px;
+        border: 0;
+        outline: 0;
+        border-radius: 12px;
+    }
+
+    &__burger {
+        display: none;
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    &__category {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;  
+
+        &-list {
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+
+        &-txt {
+            transition: 0.4s;
+            color: #fff;
+
+            &:hover {
+                color: #000;
+            }
+        }
+    }
+}
+
+@media (max-width: 988px) {
+    .nav .container {
+        justify-content: center;
+        row-gap: 25px;
+    }
+}
+
+.button {
+    width: 90px;
+    height: 40px;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.4s;
+}
+
+.button::before {
+    position: absolute;
+    content: "";
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 200px;
+    margin: 5px;
+    transition: 0.4s;
+    transform: translateX(0);
+}
+
+html.dark .button {
+    background: #000;
+    &::before {
+        background: #fff;
+        transform: translateX(50px);
+    }
+}
+
+html.light .button {
+    background: #fff;
+    &::before {
+        background: #000;
+        transform: translateX(0);
+    }
+}

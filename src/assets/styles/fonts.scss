@@ -1,0 +1,10 @@
+$DmSans: ('Bold', 700), ('Medium', 500), ('Regular', 400);
+
+@each $name, $weight in $DmSans {
+    @font-face {
+        // src: url(../fonts/static/Poppins-#{$name}.ttf);
+        src: url(../fonts/DmSans/DMSans_18pt-#{$name}.ttf);
+        font-family: "DmSans";
+        font-weight: $weight;
+    }
+}

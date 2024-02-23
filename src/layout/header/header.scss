@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(255px, 255px));
+        place-content: center;
+        gap: 30px;
+        padding: 30px 0;
+    }
+
+    &__pagination {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .header__cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+}
+
+@media (max-width: 375px) {
+    .header__cards {
+        display: grid;
+        grid-template-columns:  repeat(auto-fit, minmax(255px, 255px));
+    }
+}
