@@ -3,9 +3,12 @@
     &__cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(255px, 255px));
-        place-items: center;
         gap: 30px;
         padding: 15px 0;
+
+        @media (max-width: 576px) {
+            place-content: center;
+        }
     }
 
     &__title {

@@ -26,15 +26,7 @@ const handleCurrentChange = (page) => {
   <header class="header">
     <div class="container">
       <div class="header__cards">
-      <el-skeleton :loading="!productsStore.products" animated>
-      <template #template>
-        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
-        <el-skeleton-item variant="h3" style="width: 50%" />
-      </template>
-      <template #default>
         <Card v-for="item in productsStore.products" :key="item.id" :info="item" />
-      </template>
-    </el-skeleton>
       </div>
       <el-pagination layout="prev, pager, next" :page-size="30" :total="productsStore.totalProducts" background
         :pager-count="5" v-model:current-page="currentPage" @current-change="handleCurrentChange"
