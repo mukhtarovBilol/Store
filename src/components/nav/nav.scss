@@ -1,6 +1,21 @@
 .nav {
     background: #286783;
     padding: 10px 0;
+    
+    .el-button {
+        background: #286783;
+        border: 0;
+        max-width: 300px;
+        width: 100%;
+
+        &:hover {
+            background: #286783;
+        }
+
+        & span {
+            gap: 8px;
+        }
+    }
 
     & .container {
         display: flex;
@@ -58,7 +73,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
+        padding: 20px 0;
+    }
+
+    &__link {
     }
 
     &__txt {

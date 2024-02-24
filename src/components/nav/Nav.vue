@@ -4,6 +4,7 @@ import { useProductsStore } from "@/stores/productsStore";
 import { ref, watch } from "vue";
 import { useDark, useToggle } from '@vueuse/core'
 import debounce from "lodash.debounce";
+import { ElLoading } from 'element-plus'
 const productsStore = useProductsStore()
 
 const isDark = useDark();
@@ -42,6 +43,13 @@ watch(query, debounce(() => {
     productsStore.searchValue(query.value)
 }, 400))
 
+const fullscreenLoading = ref(false)
+const openFullScreen1 = () => {
+  fullscreenLoading.value = true
+  setTimeout(() => {
+    fullscreenLoading.value = false
+  }, 800)
+}
 </script>
 
 <template>
@@ -57,6 +65,11 @@ watch(query, debounce(() => {
                 </form>
             </RouterLink>
             <ul class="nav__list">
+                <el-button
+                v-loading.fullscreen.lock="fullscreenLoading"
+                type="primary"
+                @click="openFullScreen1"
+                >
                 <RouterLink :to="item.path" class="nav__link" v-for="item in list" :key="item.id">
                     <li class="nav__item" >
                         <p class="nav__count-basket" :class="{'active' : item?.count && !productsStore.basket.length == 0}">{{ productsStore.basket.length }}</p>
@@ -64,6 +77,7 @@ watch(query, debounce(() => {
                         <p class="nav__txt">{{ item.txt }}</p>
                     </li>
                 </RouterLink>
+                </el-button>
             </ul>
             <label for="check" class="button" @click="toggleDark()"></label>
         </div>

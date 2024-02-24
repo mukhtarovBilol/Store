@@ -3,6 +3,14 @@ import { useProductSingleStore } from '@/stores/productSingleStore';
 import { useColorMode } from '@vueuse/core'
 import { computed } from "vue";
 import { useProductsStore } from '@/stores/productsStore'
+
+const open3 = () => {
+  ElMessage({
+    message: 'Maximum quantity of goods!',
+    type: 'warning',
+  })
+}
+
 const productSingleStore = useProductSingleStore();
 productSingleStore.getFetchProducts();
 
@@ -41,12 +49,12 @@ const price = computed(() => {
                 <p class="basket__card-discount">{{ price }} $</p>
                 <p class="basket__card-price">{{ info?.product?.price }} $</p>
                 <p class="basket__card-stock">Stock: {{ info?.product?.stock }}</p>
-                <p class="basket__card-productCount" :class="{'active' : info?.count == info?.product?.stock}">Count: {{ info?.count == info?.product?.stock ? 'Max' : info?.count }}</p>
+                <p class="basket__card-productCount" :class="{'active' : info?.count == info?.product?.stock}" >Count: {{ info?.count == info?.product?.stock ? 'Max' : info?.count }}</p>
                 <p class="basket__card-totalPrice">Total Price: {{ formatNumber(price * info?.count) }} $</p>
             </div>
         </div>
         <div class="basket__card-about" :class="{'active' : colorMode == 'dark'}">
-            <span class="basket__card-count" @click="productsStore.productTotalCount('+', info?.product?.id )"><el-icon><Plus /></el-icon></span>
+            <span :plain="true" class="basket__card-count" @click="productsStore.productTotalCount('+', info?.product?.id ), info?.count == info?.product?.stock ? open3() : ''"><el-icon><Plus /></el-icon></span>
             <span class="basket__card-count" @click="info?.count == 1 ? info?.count : productsStore.productTotalCount('-', info?.product?.id)"><el-icon><Minus /></el-icon></span>
             <span class="basket__card-count" @click="productsStore.delBasketProduct(info?.product?.id)"><el-icon><Delete /></el-icon></span>
         </div>

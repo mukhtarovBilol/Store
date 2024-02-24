@@ -2,6 +2,7 @@
     border-radius: 12px;
     padding: 10px;
     transition: 0.4s;
+    z-index: 1;
 
     &:hover {
         box-shadow: 0 0 5px #000;
@@ -42,6 +43,10 @@
         &.active {
             color: #fff;
         }
+    }
+
+    &__like-icon {
+        z-index: 999;
     }
 
     &__price {
@@ -86,6 +91,11 @@
         align-items: center;
         gap: 5px;
     }
+
+    .el-button {
+        border: unset;
+        padding: 5px;
+    }
 }
 
 .basket__card {
@@ -126,6 +136,7 @@
     &-image {
         max-width: 200px;
         width: 100%;
+        max-height: 200px;
         object-fit: cover;
         border-radius: 12px;
 
@@ -194,6 +205,13 @@
         font-size: clamp(14px, 3vw, 18px);
         margin-bottom: 10px;
     }
+    
+}
+.el-message {
+    background: linear-gradient(#292218,  #432a04);
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .comments {

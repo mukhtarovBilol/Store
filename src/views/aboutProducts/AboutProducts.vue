@@ -4,15 +4,24 @@ import { useRoute } from "vue-router";
 import { useProductSingleStore } from "@/stores/productSingleStore";
 import { useProductsStore } from '@/stores/productsStore'
 import Modal from '@/components/modal/Modal.vue';
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useCommentsStore } from "@/stores/getComments";
 import CommentsCard from '@/components/card/CommentsCard.vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, EffectCube, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 import "swiper/css";
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
+
+
+const open1 = () => {
+  ElNotification({
+    title: 'Success',
+    message: 'This is a success message',
+    type: 'success',
+  })
+}
 
 const colorMode = useColorMode({
     modes: {
@@ -69,8 +78,10 @@ const price = computed(() => {
           <span class="about__price" :class="{'active' : colorMode == 'dark'}">Price: {{ price }}$</span>
           <div class="about__btns">
               <a href="#!" class="about__link" :class="{'active' : colorMode == 'dark'}" @click="productsStore.getBasketProducts(route.params.id)">Add to cart</a>
-              <a href="#!" class="about__link2" :class="{'active' : colorMode == 'dark'}" @click="buy">Buy</a>
-          </div>
+              <!-- <a href="#!" class="about__link2" :class="{'active' : colorMode == 'dark'}" @click="buy">Buy</a>
+               -->
+               <a href="#!" plain class="about__link2" @click="open1"> Buy </a>
+            </div>
         </div>
         <RouterLink :to="'/category/' + productSingleStore?.product?.category" :class="{'active' : colorMode == 'dark'}" class="about__products">More products</RouterLink>
       </div>

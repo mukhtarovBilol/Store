@@ -1,9 +1,10 @@
 <script setup>
-import BasketCard from '@/components/card/BasketCard.vue';
 import { imageBasketEmpty } from '@/helpers/images';
 import { useProductsStore } from '@/stores/productsStore';
 import { useColorMode } from '@vueuse/core';
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import BasketCard from '@/components/card/BasketCard.vue';
+import BasketModal from '@/components/modal/basketModal/BasketModal.vue'
 
 const formatNumber = (x) => x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ' ')
 const productsStore = useProductsStore();
@@ -20,11 +21,6 @@ const totalPrice = computed(() => {
     )
 })
 
-function buy() {
-    alert('Purchased✅')
-    productsStore.basket.length = 0
-}
-
 </script>
 
 <template>
@@ -40,7 +36,11 @@ function buy() {
             <div class="basket__cards">
                 <BasketCard v-for="item in productsStore.basket" :key="item.id" :info="item" />
             </div>
-            <p class="basket__totalPrice" :class="{'active' : colorMode == 'dark'}" v-show="totalPrice" @click="buy">To pay: {{ formatNumber(totalPrice) }} $ </p>
+            <!-- <el-button :plain="true" @click="open3">warning</el-button> -->
+            <p class="basket__totalPrice" :class="{'active' : colorMode == 'dark'}" v-show="totalPrice" @click="productsStore.toggleModal(true),isShow = !isShow">To pay: {{ formatNumber(totalPrice) }} $</p>
         </div>
+    <Teleport to="#body">
+      <BasketModal v-show="productsStore.isShow" />
+    </Teleport>
     </section>
 </template>

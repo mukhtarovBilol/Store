@@ -12,6 +12,13 @@ const colorMode = useColorMode({
   }
 })
 
+const open2 = () => {
+  ElMessage({
+    message: 'Congrats, this is a success message.',
+    type: 'success',
+  })
+}
+
 const props = defineProps({
   info: Object,
 });
@@ -22,34 +29,27 @@ const price = computed(() => {
     (props.info?.price / 100) * props?.info?.discountPercentage
   );
 });
-
 </script>
 
 <template>
-  <el-skeleton :loading="!productsStore.products" animated>
-      <template #template>
-        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
-        <el-skeleton-item variant="h3" style="width: 50%" />
-      </template>
-      <template #default>
-        <div class="card" :class="{ 'active': colorMode == 'dark' }">
-          <div class="card__images">
-            <img :src="info?.thumbnail" alt="" class="card__image" />
-          </div>
-          <div class="card__prices" :class="{ 'active': colorMode == 'dark' }">
-            <p class="card__price">{{ info?.price }} $</p>
-            <p class="card__discountPrice">{{ price }} $</p>
-          </div>
-          <div class="card__desc">
-            <h3 class="card__title" :class="{ 'active': colorMode == 'dark' }">{{ info?.title }}</h3>
-            <LikeIcon class="card__like-icon" @click="productsStore.getLikedProduct(info?.id, info)"
-              :class="{ 'active': productsStore.favIds?.find(item => item == info?.id) == info?.id }" />
-            </div>
-          <div class="card__btns">
-            <RouterLink :to="'/product' + '/' + info?.id" class="card__info"> More </RouterLink>
-            <RouterLink to="/" @click="productsStore.getBasketProducts(info?.id)" class="card__info">Add to cart</RouterLink>
-          </div>
+      <div class="card" :class="{ 'active': colorMode == 'dark' }">
+        <div class="card__images">
+          <img :src="info?.thumbnail" alt="" class="card__image" />
         </div>
-      </template>
-    </el-skeleton>
+        <div class="card__prices" :class="{ 'active': colorMode == 'dark' }">
+          <p class="card__price">{{ info?.price }} $</p>
+          <p class="card__discountPrice">{{ price }} $</p>
+        </div>
+        <div class="card__desc">
+          <h3 class="card__title" :class="{ 'active': colorMode == 'dark' }">{{ info?.title }}</h3>
+          <el-button :plain="true" @click="open2(), productsStore.getLikedProduct(info?.id, info)" class="card__btn">
+            <LikeIcon class="card__like-icon"
+              :class="{ 'active': productsStore.favIds?.find(item => item == info?.id) == info?.id }" />
+          </el-button>
+          </div>
+        <div class="card__btns">
+          <RouterLink :to="'/product' + '/' + info?.id" class="card__info"> More </RouterLink>
+          <RouterLink to="/" @click="productsStore.getBasketProducts(info?.id)" class="card__info">Add to cart</RouterLink>
+        </div>
+      </div>
 </template>

@@ -10,5 +10,6 @@
     .card__like-icon.active path {
         fill: red;    
         transition: .15s ease;
+        z-index: 999;
     }
 </style>
