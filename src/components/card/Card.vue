@@ -32,7 +32,18 @@ const price = computed(() => {
 </script>
 
 <template>
-      <div class="card" :class="{ 'active': colorMode == 'dark' }">
+  <el-space direction="vertical" alignment="flex-start" >
+      <el-skeleton :loading="!productsStore.products" animated>
+      <template #template >
+        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="p" />
+          <el-skeleton-item variant="h3" style="width: 50%" />
+          <el-skeleton-item variant="a" />
+        </div>
+      </template>
+      <template #default>
+        <div class="card" :class="{ 'active': colorMode == 'dark' }">
         <div class="card__images">
           <img :src="info?.thumbnail" alt="" class="card__image" />
         </div>
@@ -51,4 +62,7 @@ const price = computed(() => {
           <RouterLink to="/" @click="productsStore.getBasketProducts(info?.id)" class="card__info">Add to cart</RouterLink>
         </div>
       </div>
+      </template>
+    </el-skeleton>
+  </el-space>
 </template>
