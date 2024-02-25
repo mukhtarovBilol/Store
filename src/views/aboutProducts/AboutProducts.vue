@@ -18,7 +18,7 @@ import 'swiper/css/pagination';
 const open1 = () => {
   ElNotification({
     title: 'Success',
-    message: 'This is a success message',
+    message: 'Purchased✅',
     type: 'success',
   })
 }
@@ -35,10 +35,6 @@ productSingleStore.getFetchProducts(route.params.id);
 const productsStore = useProductsStore()
 const commentsStore = useCommentsStore()
 commentsStore.getComments(route.params.id * 30 - 30)
-
-function buy() {
-  alert("Purchased✅")
-}
 
 const price = computed(() => {
   return Math.floor(
@@ -78,9 +74,7 @@ const price = computed(() => {
           <span class="about__price" :class="{'active' : colorMode == 'dark'}">Price: {{ price }}$</span>
           <div class="about__btns">
               <a href="#!" class="about__link" :class="{'active' : colorMode == 'dark'}" @click="productsStore.getBasketProducts(route.params.id)">Add to cart</a>
-              <!-- <a href="#!" class="about__link2" :class="{'active' : colorMode == 'dark'}" @click="buy">Buy</a>
-               -->
-               <a href="#!" plain class="about__link2" @click="open1"> Buy </a>
+              <a href="#!" plain class="about__link2" @click="open1"> Buy </a>
             </div>
         </div>
         <RouterLink :to="'/category/' + productSingleStore?.product?.category" :class="{'active' : colorMode == 'dark'}" class="about__products">More products</RouterLink>

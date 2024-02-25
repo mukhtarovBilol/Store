@@ -14,7 +14,7 @@ const colorMode = useColorMode({
 
 const open2 = () => {
   ElMessage({
-    message: 'Congrats, this is a success message.',
+    message: 'Successfully',
     type: 'success',
   })
 }
@@ -42,10 +42,9 @@ const price = computed(() => {
         </div>
         <div class="card__desc">
           <h3 class="card__title" :class="{ 'active': colorMode == 'dark' }">{{ info?.title }}</h3>
-          <el-button :plain="true" @click="open2(), productsStore.getLikedProduct(info?.id, info)" class="card__btn">
             <LikeIcon class="card__like-icon"
+              :plain="true" @click="open2(), productsStore.getLikedProduct(info?.id, info)" 
               :class="{ 'active': productsStore.favIds?.find(item => item == info?.id) == info?.id }" />
-          </el-button>
           </div>
         <div class="card__btns">
           <RouterLink :to="'/product' + '/' + info?.id" class="card__info"> More </RouterLink>
