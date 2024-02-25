@@ -176,3 +176,10 @@ html.light .button {
         transform: translateX(0);
     }
 }
+
+.el-notification {
+    @media (max-width: 360px) {
+        max-width: 250px;
+        width: 100%;
+    }
+}

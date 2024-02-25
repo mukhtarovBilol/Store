@@ -63,6 +63,7 @@ const open = () => {
     title: colorMode.value == 'dark' ? 'Light mode' : 'Dark mode',
     message: colorMode.value == 'dark' ? 'Switched to light mode' : 'Switched to dark mode',
     position: 'top-left',
+    duraction: 0,
   })
 }
 </script>
@@ -94,7 +95,7 @@ const open = () => {
                 </RouterLink>
                 </el-button>
             </ul>
-            <label for="check" class="button" @click="toggleDark(), open()"></label>
+            <label for="check"  class="button"  @click="toggleDark(), open()"></label>
         </div>
     </nav>
 </template>
