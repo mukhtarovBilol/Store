@@ -14,6 +14,7 @@ const getFetchCategory = async () => {
   }
 };
 
+
 getFetchCategory();
 
 const colorMode = useColorMode({
@@ -29,11 +30,11 @@ const colorMode = useColorMode({
     <div class="container">
       <div class="category__texts">
         <RouterLink
-          :to="'/category/' + item"
+          :to="'/category/' + item.name"
           class="category__text"
           :class="{'active' : colorMode == 'dark'}"
           v-for="item in category">
-          {{ item }}
+          {{ item.name }}
         </RouterLink>
       </div>
     </div>

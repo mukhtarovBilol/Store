@@ -32,7 +32,7 @@ const price = computed(() => {
 </script>
 
 <template>
-  <el-space direction="vertical" alignment="flex-start" >
+  <el-space>
       <el-skeleton :loading="!productsStore.products" animated>
       <template #template >
         <el-skeleton-item variant="image" style="width: 240px; height: 240px" />

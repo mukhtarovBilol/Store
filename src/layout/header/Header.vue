@@ -33,8 +33,9 @@ const handleCurrentChange = (page) => {
       </div>
       <el-pagination
         layout="prev, pager, next"
-        :page-size="30"
+        :page-size="30" 
         :total="productsStore.totalProducts"
+       
         background
         :pager-count="5"
         v-model:current-page="currentPage"
